@@ -1,11 +1,115 @@
 /* ===== YOUR CSS GOES HERE ===== */
 /* ===== START BY IMPORTING YOUR FONTS ===== */ 
 /* ===== NEXT WRITE GLOBAL STYLES, THEN USE MEDIA QUERIES FOR LAYOUT/STYLE ADJUSTMENTS ===== */
+
 /* ===== STARTER CSS BELOW FOR body AND p IS JUST AN EXAMPLE... YOU MAY DELETE IT ===== */
 
-body {
-    background: magenta;
+*, *::before, *::after {
+	box-sizing: border-box;
 }
-p {
-    font-size: 2em;
+
+/* HEADER/NAV BAR */
+
+nav {
+    background-color: aqua;
+     /* block */
+    padding: 0;
+    margin: 0; 
+    /* position */
+    position: fixed;
+    top: 0;
+    inline-size: 100vw;
+    block-size: 80px;
+}
+nav ul{
+    inline-size: 100vw; 
+    display: flex;
+    list-style: none;
+}
+
+nav li {
+    margin-block: 1rem;
+}
+
+nav ul li:first-child {
+    margin-inline: 1rem auto;
+}
+
+nav ul li:last-child {
+    margin-inline: auto 1rem;
+}
+
+/* LANDING PAGE */
+
+.landing {
+    block-size: 100dvh;
+    background-color: darkcyan;
+    color: white;
+    padding-block: auto;
+}
+
+.landing div {
+    
+}
+.landing h1 {
+    margin-block-start: 80px;
+}
+
+.start-button {
+    margin-top: 5rem;
+    padding: 1rem;
+    color: darkcyan;
+    background-color: aqua;
+}
+
+/* home page */
+
+.educational {
+    margin-block-start: 80px;
+    padding-block-start: 1rem;
+    background-color:bisque;
+}
+ 
+.depth-counter {
+    position: fixed;
+    left: 0;
+    inline-size: 250px;
+}
+
+.all-zones {
+    margin-inline-start: 250px;
+    padding-inline: 3rem;
+}
+
+/* sections */
+
+.zone-buttons {
+    list-style: none;
+    margin: none;
+    padding: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+}
+
+.species-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+section > p {
+    max-inline-size: 70ch;
+}
+
+/* POPUPS! */
+
+.popup-background {
+    display: none;
+}
+
+.species {
+    padding: 0;
+    margin: 0;
 }
