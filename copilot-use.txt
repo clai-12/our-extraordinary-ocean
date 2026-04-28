@@ -896,3 +896,72 @@ The depth button is now a clean, flat button that simply toggles the drawer with
 
 Made changes.
 
+User: make the scroll buttons either empty or filled based on which section the user is at. For example, if the user is in the sunlit zone, the first circle shuold be filled, while the remaining four are not filled. 
+
+GitHub Copilot: Checking the page structure and current scroll-button behavior first.
+
+Read [](file:///Users/cheryllai/Desktop/CM523/final-project/cm523-project-starter/index.html)
+
+Read [](file:///Users/cheryllai/Desktop/CM523/final-project/cm523-project-starter/scripts/scripts.js)
+
+Read [](file:///Users/cheryllai/Desktop/CM523/final-project/cm523-project-starter/styles/styles.css#1-1), lines 1 to 260
+
+Found the scroll button CSS start; now locating the actual section markup and button elements.
+
+Read [](file:///Users/cheryllai/Desktop/CM523/final-project/cm523-project-starter/exploration.html#1-1), lines 1 to 260
+
+Reading remaining CSS and the rest of the exploration page to confirm scroll button classes and section IDs.
+
+Read [](file:///Users/cheryllai/Desktop/CM523/final-project/cm523-project-starter/styles/styles.css#260-260), lines 260 to 473
+
+Searched for regex `scroll-button|scroll-buttons|fill="white"|section id="sunlit"|section id="twilight"` (`**/*.{html,css,js}`), 15 results
+
+Updating the exploration page, button styling, and scroll tracking logic together.
+
+Replacing 75 lines with 105 lines in [](file:///Users/cheryllai/Desktop/CM523/final-project/cm523-project-starter/exploration.html), [](file:///Users/cheryllai/Desktop/CM523/final-project/cm523-project-starter/styles/styles.css), [](file:///Users/cheryllai/Desktop/CM523/final-project/cm523-project-starter/scripts/scripts.js)
+
+
+```
+
+```
+
+```
+
+```
+
+```
+
+```
+Reviewing the updated JS and button styles to ensure the active section state is wired correctly.
+
+Read [](file:///Users/cheryllai/Desktop/CM523/final-project/cm523-project-starter/scripts/scripts.js#1-1), lines 1 to 120
+
+Read [](file:///Users/cheryllai/Desktop/CM523/final-project/cm523-project-starter/scripts/scripts.js#120-120), lines 120 to 126
+
+## Done
+
+Updated the exploration page so the scroll indicator dots now show the active section as a filled circle.
+
+### What changed
+
+- exploration.html
+  - Set each scroll button's SVG circle to `fill="transparent"` with a white stroke.
+- styles.css
+  - Added `.scroll-button svg circle` default empty state.
+  - Added `.scroll-button.active svg circle` filled state.
+  - Added hover styling for better affordance.
+- scripts.js
+  - Added `scrollButtons` tracking.
+  - Added `updateScrollButtons(activeZoneId)` to toggle `.active` on the current section’s button.
+  - Integrated it into `computeDepth()` so the button state updates on scroll/resize.
+
+### Result
+
+When the user is in:
+- `#sunlit` → first circle fills
+- `#twilight` → second circle fills
+- `#midnight` → third fills
+- `#abyssal` → fourth fills
+- `#hadal` → fifth fills
+
+Made changes.

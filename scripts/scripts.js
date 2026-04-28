@@ -44,6 +44,8 @@ const zones = [
   { id: 'hadal', minDepth: 6000, maxDepth: 11000 }
 ];
 
+const scrollButtons = document.querySelectorAll('.scroll-button');
+
 let targetDepth = 0;
 let displayedDepth = 0;
 let animationFrame = null;
@@ -54,6 +56,7 @@ function computeDepth() {
   const viewportCenter = scrollY + viewportHeight / 2;
   
   let depth = 0;
+  let activeZone = null;
   
   for (const zone of zones) {
     const section = document.getElementById(zone.id);
@@ -65,12 +68,23 @@ function computeDepth() {
       if (viewportCenter >= sectionTop && viewportCenter < sectionBottom) {
         const progress = (viewportCenter - sectionTop) / sectionHeight;
         depth = zone.minDepth + (zone.maxDepth - zone.minDepth) * progress;
+        activeZone = zone.id;
         break;
       }
     }
   }
 
   targetDepth = Math.round(depth);
+  updateScrollButtons(activeZone);
+}
+
+function updateScrollButtons(activeZoneId) {
+  if (!scrollButtons.length) return;
+
+  scrollButtons.forEach(button => {
+    const targetId = button.getAttribute('href')?.slice(1);
+    button.classList.toggle('active', targetId === activeZoneId);
+  });
 }
 
 function renderDepth() {

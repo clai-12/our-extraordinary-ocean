@@ -149,13 +149,29 @@ button {
 .scroll-buttons {
     position: fixed;
     right: 2rem;
-    top: 50%;
+    top: 45%;
     z-index: 100;
 }
 .scroll-buttons ul {
     display: flex;
     flex-direction: column;
     list-style: none;
+}
+
+.scroll-button svg circle {
+    fill: transparent;
+    stroke: white;
+    stroke-width: 2;
+    transition: fill 0.2s ease, transform 0.2s ease;
+}
+
+.scroll-button:hover svg circle {
+    fill: rgba(255, 255, 255, 0.35);
+}
+
+.scroll-button.active svg circle {
+    fill: white;
+    transform: scale(1.05);
 }
 
 /* Depth counter */
@@ -198,6 +214,14 @@ button {
 
     .all-zones {
         margin-inline-start: 0;
+        background: #87eeef;
+    }
+
+    #sunlit {
+        margin-block-start: 3rem;
+    }
+    html {
+    scroll-snap-type: none;
     }
 }
 
@@ -225,8 +249,6 @@ button {
 }
 
 .depth-toggle-btn:hover {
-    transition:none;
-    box-shadow: none;
     transform: translateY(-50%);
 }
 
@@ -242,13 +264,8 @@ h1 {
     margin-block-end: 0;
 }
 
-article h1 {
-    margin-block-start: 1rem;
-    font-size: 4rem;
-}
-
 section>p {
-    margin-block-end: 6rem;
+    margin-block-end: 8vw;
 }
 
 @media screen and (max-width: 700px) {
@@ -265,7 +282,7 @@ section>p {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         gap: clamp(0.5rem, 5vw, 1.5rem);
     }
 }
@@ -301,8 +318,8 @@ section {
     margin: 0 auto;
     display: flex;
     flex-wrap: no-wrap;
-    align-items: center;
-    gap: clamp(1rem, 8vw, 6rem);
+    align-items: flex-start;
+    gap: clamp(1rem, 8vw, 12rem);
     row-gap: 1rem;
     max-width: 100%;
 }
@@ -384,11 +401,29 @@ section > p {
     background-color: floralwhite;
     padding: 1rem 3rem;
     border-radius: 0.5rem;
-    max-width: 80%;
+    width: min(80%, 1000px);
     max-height: 80vh;
     overflow-y: scroll;
     z-index: 1001;
     overflow-wrap: break-word;
+}
+
+article {
+    padding-inline: clamp(1rem, 4vw, 6rem);
+}
+
+article a {
+    text-decoration: underline;
+    color: darkcyan;
+}
+
+article li {
+    line-height:1.5;
+}
+article h1 {
+    margin-block-start: 1rem;
+    font-size: clamp(2rem, 5vw + 1rem, 4rem);
+    text-wrap: none;
 }
 
 .latin-name {
@@ -403,10 +438,6 @@ section > p {
 article p {
     line-height: 1.5;
 }
-figure {
-    width: 15rem;
-    max-block-size: 12rem;
-}
 
 article figure img {
     width: 100%;
@@ -415,34 +446,64 @@ article figure img {
     border-radius: 1rem;
 }
 
-article figure.species-profile-pic {
-    float: right;
-    block-size: 8rem;
-    width: 15rem;
-    margin-block-end: 5rem;
-    margin-inline-end: 0;
-}
-
+article figure.species-profile-pic,
 .float-left,
 .float-right {
-    float: left;
-    width: 12rem; 
-    height: auto;
-    overflow: hidden;
-    max-width: 40%;
-    margin: 0 1rem 1rem 0;
+    float:none;
+    display: block;
+    inline-size: 100%;
 }
 
-.float-right {
+article figure.species-profile-pic {
+    margin-block-end: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+  article figure.species-profile-pic,
+  article .float-left,
+  article .float-right {
+        float: none !important;
+        display: block;
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    article figure img {
+      width: 100%;
+      height: auto;
+    }
+}
+
+@media screen and (min-width: 700px) {
+   
+    article figure.species-profile-pic {
     float: right;
-    margin: 0 0 1rem 1rem;
-}
+    block-size: auto;
+    width: 15rem;
+    margin-block-end: 2rem;
+    margin-inline-end: 0;
+    }
 
-.float-left img,
-.float-right img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    .float-left,
+    .float-right {
+        float: left;
+        width: min(250px, 40%);
+        height: auto;
+        overflow: hidden;
+        margin: 0 1rem 1rem 0;
+    }
+
+    .float-right {
+        float: right;
+        margin: 0 0 1rem 1rem;
+    }
+
+    .float-left img,
+    .float-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .close-popup {
