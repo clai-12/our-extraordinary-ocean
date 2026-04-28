@@ -266,6 +266,7 @@ h1 {
 
 section>p {
     margin-block-end: 8vw;
+    text-wrap: balance;
 }
 
 @media screen and (max-width: 700px) {
