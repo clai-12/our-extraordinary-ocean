@@ -562,7 +562,8 @@ figcaption {
     border-radius: 2rem;
     background-color:#012b40;
     color: white;
-    padding: 5rem;
+    padding-inline: clamp(1rem, 7vw, 3rem);
+    padding-block: 4rem;
 }
 
 .about-wrapper h1 {
